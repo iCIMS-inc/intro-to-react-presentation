@@ -1,5 +1,5 @@
 
-# mdx-deck basic template
+# Intro to React
 
 This was generated with [mdx-deck][]'s `npm init deck` command.
 
