@@ -1,23 +1,434 @@
-import { Head } from 'mdx-deck'
+import { Head, Appear, Code } from 'mdx-deck'
+import { Invert, Split , SplitRight } from 'mdx-deck/layouts'
+import { CodeSurfer, components } from 'mdx-deck-code-surfer'
+import Typing from 'react-typing-animation'
+import Window from './lib/Window.js'
+import App from './lib/App.js'
 
-export { default as theme } from './theme'
+import { default as mdxTheme } from 'mdx-deck/themes'
+import nightOwl from "prism-react-renderer/themes/nightOwl"
+
+export const theme = {
+  ...mdxTheme,
+  codeSurfer: {
+    ...nightOwl,
+    showNumbers: true
+  }
+}
+export { components } from "mdx-deck-code-surfer"
+
 
 <Head>
-  <title>Presentation Title</title>
+  <title>Intro To React</title>
 </Head>
 
-# Hello
+# Intro to React
+## By Carlos G. Limardo
+
+---
+export default Split
+
+![](https://render.bitstrips.com/v2/cpanel/abc63329-c482-413d-adb0-1119243878a9-759c69da-b3bd-4af6-bd4b-23eceee9c279-v1.png?transparent=1&palette=1)
+
+## Carlos G. Limardo
+### UI Developer @ iCIMS
 
 ---
 
-## Edit this file
+![](https://www.recruiter.com/public/downloads/ebooks/76/resources/icims-logo-ike-lockup_notagline.png)
 
-To create your presentation
+---
 
-```notes
-- Create speaker notes in fenced code blocks
+## Agenda
+
+- What is React?
+- Benefits of React
+- Tutorial and Quick Overview
+- How we use React at iCIMS
+
+<small>Assumption: Basic knowledge of HTML/CSS/Javascript</small>
+
+Links and code examples available on GitHub: 
+https://github.com/iCIMS-inc/intro-to-react
+
+---
+export default Invert
+
+## What is React?
+
+
+---
+
+A javascript library for building user interfaces
+
+---
+
+It encourages the creation of reusable UI components
+
+---
+
+<video width="100%" height="auto" autoPlay loop controls>
+  <source src="media/youtube.mov" />
+</video>
+
+---
+
+![](media/youtube-breakdown.png)
+
+---
+export default Invert
+
+## Benefits of React
+
+---
+
+Virtual DOM
+
+---
+
+It's not a framework, it's a library
+
+---
+
+Components
+
+---
+
+Easy to learn
+
+---
+export default Invert
+
+## What do I need to know?
+
+---
+
+Javascript
+
+---
+
+JSX
+
+---
+
+<CodeSurfer
+  code={require("raw-loader!./snippets/helloWorld.snippet")}
+  title="Hello World"
+  notes=""
+  steps={[
+    { range: [ 3, 12 ], notes: "Plain Javascript" },
+    { range: [ 16, 25 ], notes: "Using JSX" },
+    { lines: [ 5, 18 ] },
+    { lines: [ 23, 10 ] }
+  ]}
+  showNumbers
+/>
+
+---
+
+export default Invert
+
+## Setting up your application
+
+---
+
+export default Split
+
+![](https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png)
+
+## create-react-app
+
+- babel
+- webpack
+- webpack-dev-server
+
+---
+
+<Window width="680" height="200">
+  <Typing __onFinishedTyping={()=>{document.location='/#20.1'}}><span style={{fontSize: 30, color: '#fff'}}>#> npx create-react-app hackathon-project</span></Typing>
+</Window>
+<Appear>
+  <div><img src="media/create-app.png" style={{width: '100%', height: 'auto'}} /></div>
+</Appear>
+
+---
+export default Split
+
+![](media/todo-drawing.png)
+
+<div style={{position: 'relative'}}>
+<Appear>
+<div><div style={{borderColor: 'orange', borderStyle: 'dashed', borderWidth: '3px', width: '100%', height: '400px'}}>App</div></div>
+<div><span style={{borderColor: 'red', borderStyle: 'solid', borderWidth: '3px', padding: '10px', position: 'absolute', width: '90%', top: '30px', left: '10px', background: 'white'}}>Form</span></div>
+<div><span style={{borderColor: 'blue', borderStyle: 'solid', borderWidth: '3px', padding: '10px', position: 'absolute', width: '90%', height: '200px', top: '80px', left: '10px', background: 'white'}}>List</span></div>
+<div><span style={{borderColor: 'green', borderStyle: 'solid', borderWidth: '3px', padding: '10px', position: 'absolute', width: '80%', top: '120px', left: '20px', background: 'white'}}>ListItem</span></div>
+</Appear>
+</div>
+
+---
+
+```javascript Form.jsx
+import React from 'react';
+
+const Form = ({value}) => {
+  return (
+    <form>
+      <input type="text" value={value} />
+      <button type="submit">Add</button>
+    </form>
+  )
+}
+
+export default Form;
+----
+* > Form.js
+1 > Always import React
+3:10 > Form component code
+3[8:10], 6[7:10]> Define the props
+12 > Export Form component for reuse
+
+```
+
+---
+export default Split
+
+![](media/todo-drawing.png)
+
+`<Form value="go pumpkin picking" />`
+
+<form><input type="text" value="go pumpkin picking" style={{fontSize: '30px'}} /><button type="submit" style={{fontSize: '30px'}}>Add</button></form>
+
+---
+
+```javascript ListItem.jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const ListItem = ({children}) => {
+  return (
+    <div>
+      <input type='checkbox' />
+      {children}
+    </div>
+  )
+}
+
+ListItem.propTypes = {
+  children: PropTypes.string.isRequired
+}
+
+export default ListItem;
+----
+* > ListItem.js
+2, 4[5:11], 8, 14 > Children prop
+```
+---
+export default Split
+
+![](media/todo-drawing.png)
+
+`<ListItem>go pumpkin picking</ListItem>`
+
+<div style={{fontSize: '30px'}}><input type="checkbox" style={{width: '30px', height: '30px'}} />go pumpkin picking</div>
+
+---
+
+```javascript List.jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+import ListItem from './ListItem.jsx';
+
+const List = ({todos}) => {
+  const todoList = todos.map((todo) => {
+    return (
+      <ListItem key={todo.key}>{todo.text}</ListItem>
+    )
+  });
+
+  return (
+    <div>
+      {todoList}
+    </div>
+  )
+}
+
+List.propTypes = {
+  todos: PropTypes.array
+}
+
+export default List;
+----
+3 > Import the ListItem component for reuse
+6:10 > Todo's is an array that we loop through
+11:16 > Return the ListItems
+* > List
 ```
 
 ---
 
-<https://github.com/jxnblk/mdx-deck>
+```javascript mockList.js
+export default [
+	{
+		"text": "go grocery shopping",
+		"key": "1519242727"
+	},
+	{
+		"text": "buy movie tix",
+		"key": "1519242736"
+	},
+	{
+		"text": "walk the dog",
+		"key": "1519242744"
+	},
+	{
+		"text": "schedule dentist appt",
+		"key": "1519242752"
+	}
+]
+----
+* > Let's give our app some data
+4,8,12,16 > Keys are unique (timestamp)
+```
+
+---
+
+```javascript App.js
+import React from 'react';
+import Form from './Form.jsx';
+import List from './List.jsx';
+import initialTodos from './mocksTodos.js';
+
+class App extends React.Component {
+  render() {
+    const { title } = this.props; // this.props.title
+
+    return (
+      <div>
+        <h1>{title}</h1>
+        <Form />
+        <List todos={initialTodos} />
+      </div>
+    )
+  }
+}
+
+App.propTypes = {
+  title: PropTypes.string
+}
+
+App.defaultProps = {
+  title: 'To-Do App'
+}
+
+export default App;
+----
+* > Replace your App.js
+6 > Class based component (extends React.Component)
+7:17 > render() for every React.Component
+8,20:22,12 > Props
+24:26 > Default props
+4,14 > Pass the initialTodos to List component
+```
+---
+export default Split
+
+![](media/todo-drawing.png)
+
+`<App />`
+
+<div style={{textAlign: 'left'}}>
+  <h1>To-Do App</h1>
+  <form><input type="text" style={{fontSize: '30px'}} /><button type="submit" style={{fontSize: '30px'}}>Add</button></form>
+  <div>
+    <div style={{fontSize: '30px'}}><input type="checkbox" style={{width: '30px', height: '30px'}} /> go grocery shopping</div>
+    <div style={{fontSize: '30px'}}><input type="checkbox" style={{width: '30px', height: '30px'}} /> buy movie tix</div>
+    <div style={{fontSize: '30px'}}><input type="checkbox" style={{width: '30px', height: '30px'}} /> walk the dog</div>
+    <div style={{fontSize: '30px'}}><input type="checkbox" style={{width: '30px', height: '30px'}} /> schedule dentist appt</div>
+  </div>
+</div>
+
+---
+
+```javascript Form.jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Form = ({value, onChange, onSubmit}) => {
+  return (
+    <form onSubmit={onSubmit}>
+      <input type="text" value={value} onChange={onChange} />
+      <button type="submit">Add</button>
+    </form>
+  )
+}
+
+Form.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func
+}
+
+export default Form;
+----
+* > Form.jsx
+4, 6[4:10], 7[12:15] > Added new onChange and onSubmit props
+15, 16 > Functions
+```
+
+---
+<CodeSurfer
+  code={require("raw-loader!./snippets/App.snippet")}
+  title="App.jsx"
+  notes=""
+  steps={[
+    { range: [ 7, 16 ], notes: "Constructor initializes our component" },
+    { range: [ 9, 12 ], notes: "Setup our state" },
+    { range: [ 18, 20 ], notes: "Update the state when inputValue changes" },
+    { range: [ 22, 34 ], notes: "Add the inputValue to the todos state and reset the inputValue state" },
+    { lines: [ 14, 15 ], notes: "Bind the functions" },
+    { lines: [ 44, 45 ], notes: "Pass the functions as props to the Form" }
+  ]}
+  showNumbers
+/>
+
+---
+
+`<App title="Halloween Todos" />`
+
+<div style={{textAlign: 'left' }}>
+  <App title="Halloween Todos" />
+</div>
+
+---
+
+export default Invert
+
+# React at iCIMS
+
+---
+
+<video width="100%" height="auto" autoPlay loop controls>
+  <source src="media/icims-components.mov" />
+</video>
+
+---
+
+This and more on GitHub: https://github.com/iCIMS-inc/intro-to-react
+
+---
+
+## Resources
+
+- React Documentation: https://reactjs.org/ 
+- Thinking in React: https://reactjs.org/docs/thinking-in-react.html
+- Create React App: https://github.com/facebook/create-react-app
+- Javascript Tutorial: https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript
+
+---
+
+## Shout outs
+
+- MDX Deck: https://github.com/jxnblk/mdx-deck
+- CodeSurfer: https://github.com/pomber/code-surfer
+
+--
