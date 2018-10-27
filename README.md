@@ -1,38 +1,47 @@
 
 # Intro to React
 
-This was generated with [mdx-deck][]'s `npm init deck` command.
+This presentation is an Introduction to React for the iCIMS Halloween Hackathon.
 
-## Development
+Examples used in this demo:
 
-To run the presentation deck in development mode:
+[Codepen](https://codepen.io/carlito_platanito/project/editor/DONGa)
+
+[Github](https://github.com/iCIMS-inc/intro-to-react)
+
+## Getting started
+
+To run this presentation deck locally clone the repo and execute the following in the project directory.
 
 ```sh
+npm install
 npm start
 ```
 
-Edit the [`deck.mdx`](deck.mdx) file to get started.
+You can use the `arrow keys` and `spacebar` to navigate the presentation. To exit use `ctrl+c` in the terminal.
 
-## Exporting
+## Links & Resources
 
-To build the presentation deck as static HTML:
+### React
 
-```sh
-npm run build
-```
+[React Documentation](https://reactjs.org/)
 
-To export a PDF:
+[Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
 
-```sh
-npm run pdf
-```
+### React Environment Setup
 
-To export an image of the title slide:
+[Create React App](https://github.com/facebook/create-react-app)
 
-```sh
-npm run image
-```
+[Setup a React Environment Using Webpack and Babel](https://scotch.io/tutorials/setup-a-react-environment-using-webpack-and-babel)
 
-For more documentation see the [mdx-deck][] repo.
+### Javascript
+
+[Javascript Tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+
+[Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+## MDX Deck
+
+This presentation was built using MDX Deck. For more documentation see the [mdx-deck][] repo.
 
 [mdx-deck]: https://github.com/jxnblk/mdx-deck

@@ -48,8 +48,11 @@ export default Split
 
 <small>Assumption: Basic knowledge of HTML/CSS/Javascript</small>
 
-Links and code examples available on GitHub: 
-https://github.com/iCIMS-inc/intro-to-react
+Follow along on Codepen:
+https://goo.gl/6CDQKg
+
+Links and code examples available on GitHub:
+https://github.com/iCIMS-inc/intro-to-react-presentation
 
 ---
 export default Invert
@@ -144,9 +147,8 @@ export default Split
 
 ---
 
-<Window width="680" height="200">
-  <Typing __onFinishedTyping={()=>{document.location='/#20.1'}}><span style={{fontSize: 30, color: '#fff'}}>#> npx create-react-app hackathon-project</span></Typing>
-</Window>
+`#> npx create-react-app hackathon-project`
+
 <Appear>
   <div><img src="media/create-app.png" style={{width: '100%', height: 'auto'}} /></div>
 </Appear>
@@ -170,10 +172,10 @@ export default Split
 ```javascript Form.jsx
 import React from 'react';
 
-const Form = ({value}) => {
+const Form = (props) => {
   return (
     <form>
-      <input type="text" value={value} />
+      <input type="text" value={props.value} />
       <button type="submit">Add</button>
     </form>
   )
@@ -184,7 +186,7 @@ export default Form;
 * > Form.js
 1 > Always import React
 3:10 > Form component code
-3[8:10], 6[7:10]> Define the props
+3[8:10], 6[7:11]> Define the props
 12 > Export Form component for reuse
 
 ```
@@ -202,25 +204,20 @@ export default Split
 
 ```javascript ListItem.jsx
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const ListItem = ({children}) => {
+const ListItem = (props) => {
   return (
     <div>
       <input type='checkbox' />
-      {children}
+      {props.children}
     </div>
   )
-}
-
-ListItem.propTypes = {
-  children: PropTypes.string.isRequired
 }
 
 export default ListItem;
 ----
 * > ListItem.js
-2, 4[5:11], 8, 14 > Children prop
+3[5:11], 7 > Children prop
 ```
 ---
 export default Split
@@ -238,8 +235,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem.jsx';
 
-const List = ({todos}) => {
-  const todoList = todos.map((todo) => {
+const List = (props) => {
+  const todoList = props.todos.map((todo) => {
     return (
       <ListItem key={todo.key}>{todo.text}</ListItem>
     )
@@ -250,10 +247,6 @@ const List = ({todos}) => {
       {todoList}
     </div>
   )
-}
-
-List.propTypes = {
-  todos: PropTypes.array
 }
 
 export default List;
@@ -300,11 +293,9 @@ import initialTodos from './mocksTodos.js';
 
 class App extends React.Component {
   render() {
-    const { title } = this.props; // this.props.title
-
     return (
       <div>
-        <h1>{title}</h1>
+        <h1>{this.props.title}</h1>
         <Form />
         <List todos={initialTodos} />
       </div>
@@ -312,22 +303,13 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  title: PropTypes.string
-}
-
-App.defaultProps = {
-  title: 'To-Do App'
-}
-
 export default App;
 ----
 * > Replace your App.js
 6 > Class based component (extends React.Component)
-7:17 > render() for every React.Component
-8,20:22,12 > Props
-24:26 > Default props
-4,14 > Pass the initialTodos to List component
+7:15 > render() for every React.Component
+10 > Props are available in this.props object
+4,12 > Pass the initialTodos to List component
 ```
 ---
 export default Split
@@ -353,26 +335,19 @@ export default Split
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Form = ({value, onChange, onSubmit}) => {
+const Form = (props) => {
   return (
-    <form onSubmit={onSubmit}>
-      <input type="text" value={value} onChange={onChange} />
+    <form onSubmit={props.onSubmit}>
+      <input type="text" value={props.value} onChange={props.onChange} />
       <button type="submit">Add</button>
     </form>
   )
 }
 
-Form.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  onSubmit: PropTypes.func
-}
-
 export default Form;
 ----
 * > Form.jsx
-4, 6[4:10], 7[12:15] > Added new onChange and onSubmit props
-15, 16 > Functions
+6[2:8], 7[12:18] > Added new onChange and onSubmit props
 ```
 
 ---
@@ -381,17 +356,22 @@ export default Form;
   title="App.jsx"
   notes=""
   steps={[
+    {},
     { range: [ 7, 16 ], notes: "Constructor initializes our component" },
     { range: [ 9, 12 ], notes: "Setup our state" },
     { range: [ 18, 20 ], notes: "Update the state when inputValue changes" },
     { range: [ 22, 34 ], notes: "Add the inputValue to the todos state and reset the inputValue state" },
     { lines: [ 14, 15 ], notes: "Bind the functions" },
-    { lines: [ 44, 45 ], notes: "Pass the functions as props to the Form" }
+    { lines: [ 41 ], notes: "Set the value to inputValue from the state"},
+    { lines: [ 42, 43 ], notes: "Pass the functions as props to the Form" }
   ]}
   showNumbers
 />
 
 ---
+export default Split
+
+![](media/todo-drawing.png)
 
 `<App title="Halloween Todos" />`
 
@@ -413,7 +393,9 @@ export default Invert
 
 ---
 
-This and more on GitHub: https://github.com/iCIMS-inc/intro-to-react
+![Github](https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png)
+
+https://github.com/iCIMS-inc/intro-to-react-presentation
 
 ---
 
@@ -431,4 +413,9 @@ This and more on GitHub: https://github.com/iCIMS-inc/intro-to-react
 - MDX Deck: https://github.com/jxnblk/mdx-deck
 - CodeSurfer: https://github.com/pomber/code-surfer
 
---
+---
+export default Invert
+
+# Questions?
+
+https://github.com/iCIMS-inc/intro-to-react-presentation

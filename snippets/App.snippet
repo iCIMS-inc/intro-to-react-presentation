@@ -34,11 +34,9 @@ class App extends React.Component {
   }
 
   render() {
-		const { title } = this.props;
-
     return (
       <div>
-        <h1>{title}</h1>
+        <h1>{this.props.title}</h1>
         <Form 
           value={this.state.inputValue}
           onChange={this.handleOnChange}
