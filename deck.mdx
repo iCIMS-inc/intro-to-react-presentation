@@ -3,6 +3,8 @@ import { Invert, Split , SplitRight } from 'mdx-deck/layouts'
 import { CodeSurfer, components } from 'mdx-deck-code-surfer'
 import Typing from 'react-typing-animation'
 import Window from './lib/Window.js'
+
+import List from './lib/List'
 import App from './lib/App.js'
 
 import { default as mdxTheme } from 'mdx-deck/themes'
@@ -23,8 +25,7 @@ export { components } from "mdx-deck-code-surfer"
 </Head>
 
 # Intro to React
-## iCIMS 🎃 Halloween Hackathon
-
+## By iCIMS
 ---
 export default Split
 
@@ -49,7 +50,7 @@ export default Split
 <small>Assumption: Basic knowledge of HTML/CSS/Javascript</small>
 
 Follow along on Codepen:
-https://goo.gl/6CDQKg
+https://goo.gl/Rbbhi4
 
 Links and code examples available on GitHub:
 https://github.com/iCIMS-inc/intro-to-react-presentation
@@ -258,6 +259,24 @@ export default List;
 ```
 
 ---
+export default Split
+
+![](media/todo-drawing.png)
+
+`<List todos={
+  {
+    text: 'Task One',
+    key: 1
+  },
+  {
+    text: 'Task two',
+    key: 2
+  }
+}/>`
+
+<List todos={[{text: 'Task One', key: 1}, {text: 'Task two', key: 2}]} />
+
+---
 
 ```javascript mockList.js
 export default [
@@ -398,7 +417,7 @@ export default Split
 https://github.com/iCIMS-inc/intro-to-react-presentation
 
 Codepen
-https://goo.gl/6CDQKg
+https://goo.gl/Rbbhi4
 
 ---
 
